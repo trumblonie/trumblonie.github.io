@@ -17,3 +17,14 @@ $.extend({
 });
 
 var ppcLoc = $.getUrlVar('ppc');
+
+switch (ppcLoc){
+	Case 1:
+		document.getElementById("CallNumber").innerHTML = "111.111.1111";
+		document.getElementById("CallNumber").href="tel:1111111111";
+		break;
+	Case Default:
+		document.getElementById("CallNumber").innerHTML = "123.123.1234";
+		document.getElementById("CallNumber").href="tel:1231231234";
+		break;
+}
