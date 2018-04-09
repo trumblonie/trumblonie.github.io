@@ -13,8 +13,8 @@
 <p><strong>Changing Number : </strong> 
 <a href="tel:0000000000" id="CallNumber">000.000.0000</a>
 </p>
-<p><strong>ppcLoc : </strong>
-<a id="HppcLoc"></a>
+<p><strong>var ppc : </strong>
+<a id="Hppc"></a>
 </p>
 
 <script>
@@ -36,10 +36,10 @@ $.extend({
   }
 });
 
-var ppcLoc = $.getUrlVar('ppc');
-document.getElementById("HppcLoc").innerHTML = ppcLoc;
+var ppc = $.getUrlVar('ppc');
+document.getElementById("Hppc").innerHTML = ppcLoc;
 
-switch (ppcLoc){
+switch (ppc){
 	Case test1:
 		document.getElementById("CallNumber").innerHTML = "111.111.1111";
 		document.getElementById("CallNumber").href="tel:1111111111";
