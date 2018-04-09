@@ -17,6 +17,7 @@ $.extend({
 });
 
 var ppcLoc = $.getUrlVar('ppc');
+document.getElementById("HppcLoc").innerHTML = ppcLoc;
 
 switch (ppcLoc){
 	Case test1:
