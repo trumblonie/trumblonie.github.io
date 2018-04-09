@@ -21,7 +21,7 @@
 </p>
 
 <script>
-/*
+
 // Read a page's GET URL variables and return them as an associative array. http://jquery-howto.blogspot.com/2009/09/get-url-parameters-values-with-jquery.html
 function getUrlVars()
 {
@@ -39,6 +39,7 @@ function getUrlVars()
 var ppc = getUrlVars()["ppc"];
 
 
+/*
 //JQuery Extension   http://jquery-howto.blogspot.com/2009/09/get-url-parameters-values-with-jquery.html
 $.extend({
   getUrlVars: function(){
@@ -60,7 +61,7 @@ $.extend({
 var ppc = $.getUrlVar('ppc');
 */
 
-
+/*
 function parseParams(str) {
     return str.split('&').reduce(function (params, param) {
         var paramSplit = param.split('=').map(function (value) {
@@ -70,9 +71,9 @@ function parseParams(str) {
         return params;
     }, {});
 }
-
+*/
 //var url = window.location.href;
-var ppc = parseParams(window.location.href);
+//var ppc = parseParams(window.location.href);
 
 
 document.getElementById("Hppc").innerHTML = ppc;
