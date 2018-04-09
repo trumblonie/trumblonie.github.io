@@ -19,7 +19,7 @@ $.extend({
 var ppcLoc = $.getUrlVar('ppc');
 
 switch (ppcLoc){
-	Case 1:
+	Case test1:
 		document.getElementById("CallNumber").innerHTML = "111.111.1111";
 		document.getElementById("CallNumber").href="tel:1111111111";
 		break;
