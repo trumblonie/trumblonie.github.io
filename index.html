@@ -3,7 +3,8 @@
 <html>
 <body>
 
-<script>src="jquery.js"</script>
+<!--- <script>src="jquery.js"</script> --->
+<!--- <script>src="CallTrackingChange.js"</script> --->
 
 <h3>Call Tracking Number Change Testing</h3>
 <p>Default Failed : 000.000.0000</p>
@@ -17,6 +18,7 @@
 </p>
 
 <script>
+/*
 // Read a page's GET URL variables and return them as an associative array. http://jquery-howto.blogspot.com/2009/09/get-url-parameters-values-with-jquery.html
 function getUrlVars()
 {
@@ -30,7 +32,10 @@ function getUrlVars()
     }
     return vars;
 }
-/*
+
+var ppc = getUrlVars()["ppc"];
+
+
 //JQuery Extension   http://jquery-howto.blogspot.com/2009/09/get-url-parameters-values-with-jquery.html
 $.extend({
   getUrlVars: function(){
@@ -48,12 +53,26 @@ $.extend({
     return $.getUrlVars()[name];
   }
 });
+
+var ppc = $.getUrlVar('ppc');
 */
 
 
-var ppc = getUrlVars()["ppc"];
-//var ppc = $.getUrlVar('ppc');
+function parseParams(str) {
+    return str.split('&').reduce(function (params, param) {
+        var paramSplit = param.split('=').map(function (value) {
+            return decodeURIComponent(value.replace('+', ' '));
+        });
+        params[paramSplit[0]] = paramSplit[1];
+        return params;
+    }, {});
+}
+
+var ppc = parseParams(window.location.href);
+
+
 document.getElementById("Hppc").innerHTML = ppcLoc;
+
 
 switch (ppc){
 	Case test1:
