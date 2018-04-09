@@ -68,7 +68,8 @@ function parseParams(str) {
     }, {});
 }
 
-var ppc = parseParams(window.location.href);
+var url = window.location.href;
+var ppc = parseParams(url);
 
 
 document.getElementById("Hppc").innerHTML = ppcLoc;
