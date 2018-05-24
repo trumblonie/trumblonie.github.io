@@ -1,5 +1,7 @@
 <?php
+  /*
   extract(array('name' =>'','email' =>'','phone' =>''));
+  */
   ini_set('display_errors',1);
   error_reporting(E_ALL);
   if(isset($_GET['submitted'])){
@@ -51,7 +53,7 @@
       //Send Email
 
       //Email Title Information
-      $objMail          = PHPMailer();
+      $objMail          = new PHPMailer();
 
 			$objMail->SetFrom("noreply@goodlifemgmt.com", "Good Life Property Management");
 			$objMail->AddReplyTo("info@goodlifemgmt.com", "Good Life Property Management");
