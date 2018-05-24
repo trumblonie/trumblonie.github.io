@@ -39,7 +39,7 @@
       $objMail          = new PHPMailer();
 
 
-			$objMail->MsgHTML($body);
+
       $objMail->Send(); // send message
       header('Location: /lib/includes/landlordingSuccess.php?submitted=true');
     }
