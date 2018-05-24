@@ -28,13 +28,24 @@
     }
     if(!$errors){
       //Srtip Slashes
-      $name = stripslashes($_POST['name']);
-      $email = stripslashes($_POST['email']);
-      $phone = stripslashes($_POST['phone']);
+
 
 
 			//Email Content
- 
+     	$body = "<table width='500' border='0' cellspacing='0' cellpadding='0' align='center'>
+								<tr>
+									<td>Name:</td>
+									<td>$name</td>
+								</tr>
+								<tr>
+									<td>Email:</td>
+									<td>$email</td>
+								</tr>
+								<tr>
+									<td>Phone:</td>
+									<td>$phone</td>
+								</tr>
+							</table>";
       //Send Email
 
       //Email Title Information
