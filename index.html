@@ -1,119 +1,342 @@
-<!DOCTYPE html>
-
-<html>
-<body>
-
-<?php
-  extract(array('name' =>'','email' =>'','phone' =>''));
-  ini_set('display_errors',1);
-  error_reporting(E_ALL);
-  if(isset($_GET['submitted'])){
-    $formsubmitted2 = true;
-  }
-  $err_array = array();
-  if(isset($_POST['submit'])){
-    require_once("{$_SERVER['DOCUMENT_ROOT']}/phpmailer.php");
-    //Strip Tags
-    $name = strip_tags($_POST['name']);
-    $email = strip_tags($_POST['email']);
-    $phone = strip_tags($_POST['phone']);
-    $errors = false;
-    //Throw Errors if Empty
-    if(empty($name)){
-      $errors = true;
-      array_push($err_array, 'name');
-    }
-    if(empty($email)){
-      $errors = true;
-      array_push($err_array, 'email');
-    }
-	if(empty($phone)){
-      $errors = true;
-      array_push($err_array, 'phone');
-    }
-    if(!$errors){
-      //Srtip Slashes
-      $name = stripslashes($_POST['name']);
-      $email = stripslashes($_POST['email']);
-      $phone = stripslashes($_POST['phone']);
-
-
-			//Email Content
-     	$body = "<table width='500' border='0' cellspacing='0' cellpadding='0' align='center'>
-								<tr>
-									<td>Name:</td>
-									<td>$name</td>
-								</tr>
-								<tr>
-									<td>Email:</td>
-									<td>$email</td>
-								</tr>
-								<tr>
-									<td>Phone:</td>
-									<td>$phone</td>
-								</tr>
-							</table>";
-      //Send Email
-
-      //Email Title Information
-      $objMail          = PHPMailer();
-
-			$objMail->SetFrom("noreply@goodlifemgmt.com", "Good Life Property Management");
-			$objMail->AddReplyTo("info@goodlifemgmt.com", "Good Life Property Management");
-			$objMail->AddAddress("info@goodlifemgmt.com", "Good Life Property Management");
-            $objMail->AddAddress("new-leadcf58848c08@newlead.leadsimple.com", "Good Life Property Management");
-			$objMail->Subject = "Good Life Free Management Quote Submission";
-			$objMail->MsgHTML($body);
-      $objMail->Send(); // send message
-      header('Location: /lib/includes/landlordingSuccess.php?submitted=true');
-    }
-  }
-?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-  <title>Management Services | GOOD LIFE Property Management - Your Property Management Solution - San Diego, CA</title>
-  <meta name="description" content="San Diego Property Management Services, Property Management Leasing, Property Mangement Full Service, Leasing Only Property Management, Full Service Property Management, Free Rental Analysis, Promote Your Property, San Diego Property Consultation" />
-  <meta name="keywords" content="Good Life Property Management is a San Diego property management company, providing professional, full service management services to the San Diego community. Our San Diego property management team provides two main services: Leasing Only Service and Full Service Property Management." />
-  <?php include("{$_SERVER['DOCUMENT_ROOT']}/lib/includes/head.php"); ?>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Property Management San Diego - Good Life Property Management </title>
+    <meta name="description" content="Good Life Property Management services in San Diego include tenant property management and rental assistance for renters." />
+    <meta name="keywords" content="Good Life Property Management is a San Diego property management company, providing professional, full service management services to the San Diego community. Everything you need to know about Property Management in San Diego. Our service and proven reliability cannot be surpassed. You owe it to yourself to give us a call and see how we can help you today!" />
+    <?php include("{$_SERVER['DOCUMENT_ROOT']}/lib/includes/head.php"); ?>
+    <?php include("{$_SERVER['DOCUMENT_ROOT']}/lib/includes/fancybox.php"); ?>
+    <?php include("{$_SERVER['DOCUMENT_ROOT']}/lib/includes/slideshow.php"); ?>
+	<!-- Facebook Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window,document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+ fbq('init', '1522649581194378'); 
+fbq('track', 'PageView');
+</script>
+<noscript>
+ <img height="1" width="1" 
+src="https://www.facebook.com/tr?id=1522649581194378&ev=PageView
+&noscript=1"/>
+</noscript>
+<!-- End Facebook Pixel Code -->
 </head>
 <body>
-  <div id="ManagementQuote">
-    <?php require_once("{$_SERVER['DOCUMENT_ROOT']}/phpmailer.class.php"); ?>
-    <?php if(!isset($formsubmitted2)){ ?>
-    <p>Complete the form below to download PDF</p>
-    <form action="<?php echo($_SERVER['PHP_SELF']); ?>" method="post"  id="ContactForm" class="clearfix">
-      <input type='hidden' name='contact_post' value='1' />
-      <input type='hidden' name='support' value='Yes' />
-      <div class="ContactInput <?php if(in_array('name', $err_array)){echo("errorField");} ?>">
-        <label>Name*</label>
-        <input type="text" name="name" />
-      </div>
-      <div class="ContactInput <?php if(in_array('email', $err_array)){echo("errorField");} ?>">
-        <label>Email*</label>
-        <input type="text" name="email" />
-      </div>
-      <div class="ContactInput">
-        <label>Phone</label>
-        <input type="text" name="phone" maxlength="14" />
-      </div>
+
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WV7J49Z"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+    
+    <!-- - - - Header Include- - - - - -->
+    <?php include("{$_SERVER['DOCUMENT_ROOT']}/lib/includes/header.php"); ?>
+    <!-- - - - Content - - - - - -->
+    <div class="Content">
+        <?php include("{$_SERVER['DOCUMENT_ROOT']}/lib/includes/navigation.php"); ?>
+        <!-- - - - Banner Slideshow - - - - - -->
+<!--        <div class="homepage-awards hide-mobile">
+            <img src="/lib/img/index/Awards.png" alt="" />
+        </div>
+        <div class="show-mobile">
+            <img src="/lib/img/index/Awards-Mobile.png" alt="" />
+        </div>-->
+
+        <div class="homepage-top">
+            <div class="homepage-video">
+
+                <iframe style="min-height:300px;" src="https://www.youtube.com/embed/qM0yXfCJ65U?rel=0&amp;showinfo=0" frameborder="0" allowfullscreen></iframe>
+            </div>
+            <div class="homepage-pricing">
+
+                <div class="homepage-service-headline">Maximize Your Rental Income</div>
+				                <div class="homepage-service-headline">Reduce Your Liability</div>								
+				                <div class="homepage-service-headline">Free Up Your Time & Energy</div>
+      
+                <!--  <button class="btn-info" onclick="location.href='https://calendly.com/glpm/consultation/'" >Schedule a call/appt</button>
+                <button class="btn-info">Sign now</button>
+				<button id="yelp-biz-badge-rrc-2i6cyd9pgPpcmAcW8d5sPQ" style="margin: 0 0 10px 4px; vertical-align: bottom;"><a href="http://yelp.com/biz/good-life-property-management-san-diego?utm_medium=badge_star_rating_reviews&amp;utm_source=biz_review_badge" target="_blank">Check out Good Life Property Management on Yelp</a></button>    <script>(function(d, t) {var g = d.createElement(t);var s = d.getElementsByTagName(t)[0];g.id = "yelp-biz-badge-script-rrc-2i6cyd9pgPpcmAcW8d5sPQ";g.src = "//yelp.com/biz_badge_js/en_US/rrc/2i6cyd9pgPpcmAcW8d5sPQ.js";s.parentNode.insertBefore(g, s);}(document, 'script'));</script>	-->
+
+                <div class="homepage-pricing-btn2">
+                    <div class="wigit-title">Free Instant Rental Property Analysis Report</div>
+                    <div class="wigit-form">
+                        <div data-frs="quick-lead" data-placeholder="Enter your rental property address" data-success-url="/lead.php"></div>
+                    </div>
+                    <!-- <a class="fancybox iframe fancybox.iframe" href="/lib/includes/managementQuote.php" title="Click Here for a FREE Rental Market Analysis of Your Property">Free Rental Market Analysis</a>-->
+                </div>
+
+                <!--
+                <div class="homepage-service-headline">We specialize in helping first time landlords and small investors! </div>
+                <ul class="homepage-service-copy">
+                    <li>We communicate frequently with our clients</li>
+                    <li>We are fully transparent</li>
+                    <li>Repairs are done right and at a fair price</li>
+                    <li>Our vacancy rate is less than 2%</li>
+                    <li>We select only the best tenants</li>
+                    <li>Our eviction rate is 0%</li>
+                </ul>
+                -->
+
+            </div>
+        </div>
+
+        <div class="homepage-guarantee-parent">
+
+            <div class="homepage-guarantee-child">
+                <div class="guarantee-icon"><img src="/lib/img/index/guarantee-icon.png" alt="" /></div>
+                <div class="guarantee-box">
+                    <h3>Leasing Guarantee</h3>
+                    <p>We will find a quality tenant within 30 days or you do not pay a leasing fee!</p>
+                </div>
+            </div>
+
+            <div class="homepage-guarantee-child">
+                <div class="guarantee-icon"><img src="/lib/img/index/guarantee-icon.png" alt="" /></div>
+                <div class="guarantee-box">
+                    <h3>No Eviction Guarantee</h3>
+                    <p>If we have to evict a tenant we placed, for non-payment of rent, we will pay for the eviction up to $1200 (which usually covers all court costs and attorney's fees)! We will also find a new tenant for free!</p>
+                </div>
+            </div>
+
+            <div class="homepage-guarantee-child">
+                <div class="guarantee-icon"><img src="/lib/img/index/guarantee-icon.png" alt="" /></div>
+                <div class="guarantee-box">
+                    <h3>Happiness Guarantee</h3>
+                    <p>If you're not happy, let us know and we'll make it right. If we can't, we will credit you that month's management fee. If you want out of the agreement, you can cancel at anytime without penalty!</p>
+                </div>
+            </div>
+
+            <div class="homepage-guarantee-child">
+                <div class="guarantee-icon"><img src="/lib/img/index/guarantee-icon.png" alt="" /></div>
+                <div class="guarantee-box">
+                    <h3>Good Pet Guarantee</h3>
+                    <p>If you allow a pet, we guarantee your home will not be damaged by a pet we approve. We will pay for any pet damage that exceeds the security deposit, up to $1,000! ​</p>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="homepage-ad-section">
+		
+
+            <div class="homepage-ad">
 
 
-      <div class="Submit" style="clear: both;padding-left: 22px;text-align: left;">
-        <input type="submit" name="submit" value="Submit" onClick="_gaq.push(['_trackEvent', 'contact', 'analysis', 'rental']);" />
-      </div>
-    </form><?php
-    } else { ?>
-	    <div class="formSuccess ownerpdf"><h1>Thank you</h1> <br>
 
-	    </div>
-	    <a class="downloadbtn" href="../../lib/pdf/Good_Life_Landlording_in_San_Diego_A_How_To_Guide_for_Success.pdf" download>Download here</a>
-	  <?php } ?>
-  </div>
-</body>
-</html>
+                <a onclick="goog_report_conversion('/lib/includes/ownerinfo.php')" class="fancybox iframe fancybox.iframe" href="/lib/includes/ownerinfo.php" title="Click Here to Download Our Owner Information Packet Now!">
+                    <img src="/lib/img/index/GL.ebook.1.jpg" alt="Click Here to Download Our Owner Information Packet Now!" />
+                </a>
+            </div>
 
+			
+            <div class="homepage-ad">
+                <a onclick="goog_report_conversion('/lib/includes/landlordingSuccess.php')" class="fancybox iframe fancybox.iframe" href="/lib/includes/landlordingSuccess.php" title="Click Here for Landlording in San Diego: A How To Guide for Success!">
+                    <img src="/lib/img/index/GL.ebook.2.jpg" alt="Click Here for Landlording in San Diego: A How To Guide for Success" />
+                </a>
+            </div>
+
+            <!--<div class="homepage-ad-3">
+                <a class="fancybox iframe fancybox.iframe" href="/lib/includes/managementQuote.php" title="Click Here for a FREE Rental Market Analysis of Your Property">
+                    <img src="/lib/img/index/GL.btn.3.jpg" alt="Click Here for a FREE Rental Market Analysis of Your Property" />
+                </a>
+            </div>-->
+
+        </div>
+
+        <!--
+        <div class="information-packet">
+        <a href="/lib/pdf/GLM.Client.Information.Packet.pdf" title="Good Life MGMT Client Information Packet">
+        <img src="/lib/img/index/brochure-glm.png" alt="Click Here to Download Our Owner Information Packet Now!" />
+    </a>
+</div>
+-->
+
+
+<div id="AdvertisedProperties">
+    <h4>We Advertise Your Property on the Top Rental Websites!</h4>
+    <div class="Ads hide-mobile">
+        <img src="/lib/img/index/GL-Retail-Logos.jpg" alt="" />
+    </div>
+    <div class="Ads show-mobile">
+        <img src="/lib/img/index/GL-Retail-Logos-Mobile.jpg" alt="" />
+    </div>
+    <div class="NavShadow"><img src="/lib/img/global/Shadow.png" alt="" /></div>
+</div>
+
+
+<!-- - - - Intro Copy - - - - - -->
+<div class="clearfix Full">
+        <div class="homepage-awards hide-mobile">
+            <img src="/lib/img/index/Awards.png" alt="" />
+        </div>
+        <div class="show-mobile">
+            <img src="/lib/img/index/Awards-Mobile.png" alt="" />
+        </div>
+		    <div class="ContentRight">
+
+          <div class="award">
+
+            <div id="yelp-biz-badge-rrc-2i6cyd9pgPpcmAcW8d5sPQ"><a href="http://yelp.com/biz/good-life-property-management-san-diego?utm_medium=badge_star_rating_reviews&amp;utm_source=biz_review_badge" target="_blank">Check out Good Life Property Management on Yelp</a></div>    <script>(function(d, t) {var g = d.createElement(t);var s = d.getElementsByTagName(t)[0];g.id = "yelp-biz-badge-script-rrc-2i6cyd9pgPpcmAcW8d5sPQ";g.src = "//yelp.com/biz_badge_js/en_US/rrc/2i6cyd9pgPpcmAcW8d5sPQ.js";s.parentNode.insertBefore(g, s);}(document, 'script'));</script>
+
+            <!--
+            <img src="/lib/img/global/Award.png" alt="NARPM Property Manager of the Year - Steve Welty - San Diego 2015" />
+        -->
+        </div>
+
+        <div class="HomepageJump clearfix">
+            <a class="HomepageLink" href="/blog"><img src="/lib/img/global/Landlord-video-box.png" alt="Landlord Education Videos" /></a>
+            <a class="HomepageLink" href="/learning-center/" title="Frequently Asked Questions"><img src="/lib/img/global/ButtonFAQs.png" alt="Frequently Asked Questions" /></a>
+            <a class="HomepageLink" href="/about/service-areas/" title="Service Areas"><img src="/lib/img/global/IconServiceAreas.png" alt="Service Areas" /></a>
+            <a class="HomepageLink" href="/about/values/" title="Core Values"><img src="/lib/img/global/ButtonCoreValues.png" alt="Core Values" /></a>
+        </div>
+
+        <?php include("{$_SERVER['DOCUMENT_ROOT']}/lib/includes/social.php"); ?>
+
+    </div>
+    <div class="ContentLeft">
+        <h1>Property Management San Diego</h1>
+        <p>Good Life property management, is a San Diego property management company, specializing in peace of mind for the first time landlord and small investor. We manage single family homes, condos, and small apartment buildings, throughout San Diego. The Good Life property management San Diego team is guided by our <a href="/about/values/" title="core vaules">core values</a>. Our years of experience, reputation for quality service, and passion for improving lives, make us a great choice to consider. Give us a call today and see how we can help!</p>
+        <p><strong>Call us at (858) 207-4595 or <a href="/contact/" title="contact us now">contact us now</a>.</strong></p>
+
+        <h1 style="font-size:16px;">Sign up for the San Diego Landlord News and Legal Update</h1>
+        <!-- Begin MailChimp Signup Form -->
+        <link href="//cdn-images.mailchimp.com/embedcode/slim-10_7.css" rel="stylesheet" type="text/css">
+        <style type="text/css">
+        	#mc_embed_signup{background:#fff; clear:left; font:14px Helvetica,Arial,sans-serif; }
+        	/* Add your own MailChimp form style overrides in your site stylesheet or in this style block.
+        	   We recommend moving this block and the preceding CSS link to the HEAD of your HTML file. */
+        </style>
+        <div id="mc_embed_signup">
+        <form onclick="goog_report_conversion('//goodlifemgmt.us15.list-manage.com/subscribe/post?u=3aaad3c076f42bce8ca09e852&amp;id=e4526b7d13')" action="//goodlifemgmt.us15.list-manage.com/subscribe/post?u=3aaad3c076f42bce8ca09e852&amp;id=e4526b7d13" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+            <div id="mc_embed_signup_scroll">
+
+        	<input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="email address" required>
+            <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+            <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_3aaad3c076f42bce8ca09e852_e4526b7d13" tabindex="-1" value=""></div>
+            <div class="clear">
+<input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button"></div>
+            </div>
+        </form>
+        </div>
+        <!--End mc_embed_signup-->
+
+
+        <div style="margin-top: 15px;">
+            <h1>What Our Clients Are Saying About Us</h1>
+           
+            <div class="gradeus-stream" data-review-limit="5" data-url="https://grade.us/goodlifepm/"></div><script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.grade.us/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document, "script", "gradeus-wjs");</script>
+            
+        </div>
+
+
+        <!-- <a href="http://www.managemyproperty.com/" title="Good Life Property Management Inc is a featured manager on Manage My Property"><img alt="local property managers" src="http://www.managemyproperty.com/assets/img/badges/featured_manager_lg.png" /></a>-->
+    </div>
+
+</div>
+</div>
+<!-- - - - Footer Include- - - - - -->
+<?php include("{$_SERVER['DOCUMENT_ROOT']}/lib/includes/footer.php"); ?>
+<!-- - - - JQUERY - - - - - -->
+<script type="text/javascript">
+(function($) {
+    $(document).ready(function() {
+        $("#NavHome").addClass("active");
+
+
+        //Free Rental Analysis Code
+        (function($){
+        	var frsApp = {};
+
+        	$(document).ready(function(){
+
+        		(function(d,s,id,k) {
+        			var js, fjs = d.getElementsByTagName(s)[0];
+        			if (d.getElementById(id)) return;
+        			js = d.createElement(s);
+        			js.id = id;
+        			js.src = "https://www.freerentalsite.com/widgets/v2/?apiKey=" + ((k) ? encodeURIComponent(k) : '');
+        			fjs.parentNode.insertBefore(js, fjs);
+        		}(document, 'script', 'frs-jssdk', null));
+
+        		frsApp.settings = {
+        			profileID : "863F0DAE-565B-4AFD-AF99-9D2A46B5BE5B",
+        			protocol : "https",
+        		};
+
+        		$(window).on("frs-widget-loaded", function(e, FRS){
+        			FRS.init(frsApp.settings);
+                                $('.frs-btn').html('Get Info');
+        		});
+        	});
+
+        }(jQuery));
+        // End Rental Analysis Code
+
+
+
+    });
+})(jQuery);
+</script>
+<!-- Start of HubSpot Embed Code -->
+<script type="text/javascript" id="hs-script-loader" async defer src="//js.hs-scripts.com/4453445.js"></script>
+<!-- End of HubSpot Embed Code -->
+
+
+<!-- Start of Google Adwords Code Blocks -->
+<!-- Google Code for Newsletter Conversion Page -->
+<script type="text/javascript">
+/* <![CDATA[ */
+var google_conversion_id = 810935622;
+var google_conversion_label = "aNppCOTky4EBEMbK14ID";
+var google_remarketing_only = false;
+/* ]]> */
+</script>
+<script type="text/javascript" src="//www.googleadservices.com/pagead/conversion.js">
+</script>
+<noscript>
+<div style="display:inline;">
+<img height="1" width="1" style="border-style:none;" alt="" src="//www.googleadservices.com/pagead/conversion/810935622/?label=aNppCOTky4EBEMbK14ID&amp;guid=ON&amp;script=0"/>
+</div>
+</noscript>
+
+<!-- Google Code for Landlording Guide Conversion Page -->
+<script type="text/javascript">
+/* <![CDATA[ */
+var google_conversion_id = 810935622;
+var google_conversion_label = "QjYVCN7ky4EBEMbK14ID";
+var google_remarketing_only = false;
+/* ]]> */
+</script>
+<script type="text/javascript" src="//www.googleadservices.com/pagead/conversion.js">
+</script>
+<noscript>
+<div style="display:inline;">
+<img height="1" width="1" style="border-style:none;" alt="" src="//www.googleadservices.com/pagead/conversion/810935622/?label=QjYVCN7ky4EBEMbK14ID&amp;guid=ON&amp;script=0"/>
+</div>
+</noscript>
+
+<!-- Google Code for Owner Packet Conversion Page -->
+<script type="text/javascript">
+/* <![CDATA[ */
+var google_conversion_id = 810935622;
+var google_conversion_label = "mZAKCOSSxoEBEMbK14ID";
+var google_remarketing_only = false;
+/* ]]> */
+</script>
+<script type="text/javascript" src="//www.googleadservices.com/pagead/conversion.js">
+</script>
+<noscript>
+<div style="display:inline;">
+<img height="1" width="1" style="border-style:none;" alt="" src="//www.googleadservices.com/pagead/conversion/810935622/?label=mZAKCOSSxoEBEMbK14ID&amp;guid=ON&amp;script=0"/>
+</div>
+</noscript>
+<!-- End of Google Adwords Code Blocks -->
 
 </body>
 </html>
