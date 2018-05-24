@@ -38,11 +38,7 @@
       //Email Title Information
       $objMail          = new PHPMailer();
 
-			$objMail->SetFrom("noreply@goodlifemgmt.com", "Good Life Property Management");
-			$objMail->AddReplyTo("info@goodlifemgmt.com", "Good Life Property Management");
-			$objMail->AddAddress("info@goodlifemgmt.com", "Good Life Property Management");
-            $objMail->AddAddress("new-leadcf58848c08@newlead.leadsimple.com", "Good Life Property Management");
-			$objMail->Subject = "Good Life Free Management Quote Submission";
+
 			$objMail->MsgHTML($body);
       $objMail->Send(); // send message
       header('Location: /lib/includes/landlordingSuccess.php?submitted=true');
