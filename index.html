@@ -12,7 +12,7 @@
   }
   $err_array = array();
   if(isset($_POST['submit'])){
-    require_once("{$_SERVER['DOCUMENT_ROOT']}/lib/includes/phpmailer.php");
+    require_once("{$_SERVER['DOCUMENT_ROOT']}/phpmailer.php");
     //Strip Tags
     $name = strip_tags($_POST['name']);
     $email = strip_tags($_POST['email']);
@@ -80,7 +80,7 @@
 </head>
 <body>
   <div id="ManagementQuote">
-    <?php require_once("{$_SERVER['DOCUMENT_ROOT']}/lib/includes/phpmailer.class.php"); ?>
+    <?php require_once("{$_SERVER['DOCUMENT_ROOT']}/phpmailer.class.php"); ?>
     <?php if(!isset($formsubmitted2)){ ?>
     <p>Complete the form below to download PDF</p>
     <form action="<?php echo($_SERVER['PHP_SELF']); ?>" method="post"  id="ContactForm" class="clearfix">
