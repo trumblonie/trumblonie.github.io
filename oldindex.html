@@ -1,4 +1,50 @@
+<?php
 
+  ini_set('display_errors',1);
+  error_reporting(E_ALL);
+  if(isset($_GET['submitted'])){
+    $formsubmitted2 = true;
+  }
+  $err_array = array();
+  if(isset($_POST['submit'])){
+    require_once("{$_SERVER['DOCUMENT_ROOT']}/lib/includes/phpmailer.php");
+    //Strip Tags
+    $name = strip_tags($_POST['name']);
+    $email = strip_tags($_POST['email']);
+    $phone = strip_tags($_POST['phone']);
+    $errors = false;
+    //Throw Errors if Empty
+    if(empty($name)){
+      $errors = true;
+      array_push($err_array, 'name');
+    }
+    if(empty($email)){
+      $errors = true;
+      array_push($err_array, 'email');
+    }
+	if(empty($phone)){
+      $errors = true;
+      array_push($err_array, 'phone');
+    }
+    if(!$errors){
+      //Srtip Slashes
+
+
+
+			//Email Content
+
+      //Send Email
+
+      //Email Title Information
+      $objMail          = new PHPMailer();
+
+
+
+
+      header('Location: /lib/includes/landlordingSuccess.php?submitted=true');
+    }
+  }
+?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -36,77 +82,10 @@
     </form><?php
     } else { ?>
 	    <div class="formSuccess ownerpdf"><h1>Thank you</h1> <br>
-		    
+
 	    </div>
-	    <a class="downloadbtn" href="../../lib/pdf/GLM.Client.Information.Packet.pdf" download>Download here</a>
+	    <a class="downloadbtn" href="../../lib/pdf/Good_Life_Landlording_in_San_Diego_A_How_To_Guide_for_Success.pdf" download>Download here</a>
 	  <?php } ?>
   </div>
-  
-  <script>
-	extract(array('name' =>'','email' =>'','phone' =>''));
-  ini_set('display_errors',1);
-  error_reporting(E_ALL);
-  if(isset($_GET['submitted'])){
-    $formsubmitted2 = true;
-  }
-  $err_array = array();
-  if(isset($_POST['submit'])){
-    require_once("{$_SERVER['DOCUMENT_ROOT']}/lib/includes/phpmailer.php");
-    //Strip Tags
-    $name = strip_tags($_POST['name']);
-    $email = strip_tags($_POST['email']);
-    $phone = strip_tags($_POST['phone']);
-    $errors = false;
-    //Throw Errors if Empty
-    if(empty($name)){
-      $errors = true;
-      array_push($err_array, 'name');
-    }
-    if(empty($email)){
-      $errors = true;
-      array_push($err_array, 'email');
-    }
-	if(empty($phone)){
-      $errors = true;
-      array_push($err_array, 'phone');
-    }
-    if(!$errors){
-      //Srtip Slashes
-      $name = stripslashes($_POST['name']);
-      $email = stripslashes($_POST['email']);
-      $phone = stripslashes($_POST['phone']);
-
-
-			//Email Content
-     	$body = "<table width='500' border='0' cellspacing='0' cellpadding='0' align='center'>
-								<tr>
-									<td>Name:</td>
-									<td>$name</td>
-								</tr>
-								<tr>
-									<td>Email:</td>
-									<td>$email</td>
-								</tr>
-								<tr>
-									<td>Phone:</td>
-									<td>$phone</td>
-								</tr>
-							</table>";
-      //Send Email
-
-      //Email Title Information
-      $objMail          = new PHPMailer();
-
-			$objMail->SetFrom("noreply@goodlifemgmt.com", "Good Life Property Management");
-			$objMail->AddReplyTo("info@goodlifemgmt.com", "Good Life Property Management");
-			$objMail->AddAddress("info@goodlifemgmt.com", "Good Life Property Management");
-            $objMail->AddAddress("new-leadcf58848c08@newlead.leadsimple.com", "Good Life Property Management");
-			$objMail->Subject = "Good Life Free Management Quote Submission";
-			$objMail->MsgHTML($body);
-      $objMail->Send(); // send message
-      header('Location: /lib/includes/ownerinfo.php?submitted=true');
-    }
-  }
-	</script>
 </body>
 </html>
